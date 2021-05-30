@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="mb-5">
+  <h3 style="font-weight: bold" class="page-heading">Specialties</h3>
+  <hr>
+
+</header>
+<div class='profiles'>
+    <ul class="list-group">
+        {% for specialty in specialties %}
+        <li class="list-group-item"><h3><a class='badge badge-light' href="{% url 'viewSpecialty' specialty.id %}">{{specialty.SpecialtyName}}</a></h3></li>
+        {% endfor %}
+      </ul>
+        
+            
+        
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+<div style="width: 60%; margin: auto">
+    <header class="text-center">
+        <h3 style="font-weight: bold" class="page-heading mb-0">Delete Student</h3>
+        <hr>
+    </header>
+    <p>Are you sure you want to delete "{{item}}"?</p>
+
+    <form action="{% url 'deleteStudent' item.id  %}" method="POST">
+        
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+
+        <input class="btn btn-danger" type="submit" name="Confirm">
+    </form>
+</div>
+
+
+{% endblock %}

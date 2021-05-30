@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="mb-5">
+  <h3 style="font-weight: bold" class="page-heading">Subjects</h3>
+  <hr>
+
+  <h5>{{student.lastName}} {{student.firstName}} {{student.middleName}}</h5>
+</header>
+<div class='profiles'>
+  {% if subjects %}
+  <table class="table table-striped">
+    <tr>
+        <th>SubjectName</th>
+        <th>Mark</th>
+        {% if user.is_authenticated and user.is_superuser %}
+        <th style="float: right;">Update</th>
+        {% endif %}
+    </tr>
+
+        {% for subject in subjects %}
+            <tr>
+                <td>{{subject.subjectName}}</td>
+                <td>{{subject.mark}}</td>
+                {% if user.is_authenticated and user.is_superuser %}
+                <td style="float: right;"><a class="btn btn-sm btn-info" href="{% url 'updateSubject' subject.id %}">Update</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        <tr>
+          <td><b>Average Mark</b></td>
+          <td colspan="1"></td>
+          <td><b style="float: right;">{{ average }}</b></td>
+      </tr>
+</table>
+  {% else %}
+  <p class='lead text-muted'>There are no subjects..</p>
+  {% endif %}
+</div>
+{% endblock %}
